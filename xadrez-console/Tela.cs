@@ -1,4 +1,5 @@
-﻿using tabuleiro;
+﻿using System;
+using tabuleiro;
 
 namespace xadrez_console
 {
@@ -6,20 +7,49 @@ namespace xadrez_console
     {
         public static void ImprimirTabuleiro(tabuleiro.Tabuleiro tabuleiro)
         {
+
+
             for (int i = 0; i < tabuleiro.Linhas; i++)
             {
 
+                System.Console.Write(8 - i + " ");
 
                 for (int y = 0; y < tabuleiro.Colunas; y++)
                 {
-
-                    Peca peca = tabuleiro.GetPeca(i, y);
-
-                    System.Console.Write(peca != null ? peca.ToString() : " -");
-
+                    ImprimirPeca(tabuleiro.GetPeca(i, y));
                 }
 
                 System.Console.WriteLine();
+
+            }
+
+            System.Console.WriteLine( "   a b c d e f g h");
+
+        }
+
+        public static void ImprimirPeca(Peca peca)
+        {
+
+           if (peca == null)
+            {
+                Console.Write(" -");
+                return;
+            }
+
+            if (peca.Cor == Cor.Branca)
+            {
+                System.Console.Write(peca);
+
+            }
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                System.Console.Write(peca);
+
+
+                Console.ForegroundColor = aux;
 
             }
         }

@@ -6,16 +6,32 @@ namespace xadrez_console
 {
     class Program
     {
-
         static void Main(string[] args)
         {
 
-            var pos = new PosicaoXadrez('a', 1);
+            try
+            {
 
-            Console.WriteLine(pos);
-            Console.WriteLine(pos.ToPosicao());
+                var tab = new tabuleiro.Tabuleiro(8, 8);
 
-            Console.Read();
+                var rei = new Rei(tab, Cor.Branca);
+                var reib = new Rei(tab, Cor.Amarela);
+
+
+                tab.ColocarPeca(rei, new Posicao(1, 1));
+                tab.ColocarPeca(reib, new Posicao(1, 6));
+
+
+
+                Tela.ImprimirTabuleiro(tab);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.ReadKey();
 
 
         }
