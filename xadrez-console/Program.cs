@@ -9,16 +9,29 @@ namespace xadrez_console
         static void Main(string[] args)
         {
 
-            var tab = new tabuleiro.Tabuleiro(8, 8);
+            try
+            {
 
-            var rei = new Rei(tab, new Cor());
+                var tab = new tabuleiro.Tabuleiro(8, 8);
 
-            tab.ColocarPeca(rei, new Posicao(1, 1));
-            
+                var rei = new Rei(tab, Cor.Branca);
 
-            Tela.ImprimirTabuleiro(tab);
+                tab.ColocarPeca(rei, new Posicao(1, 9));
+                tab.ColocarPeca(rei, new Posicao(1, 1));
 
+
+
+                Tela.ImprimirTabuleiro(tab);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.ReadKey();
+
+
         }
     }
 }
