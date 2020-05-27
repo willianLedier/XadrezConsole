@@ -1,4 +1,6 @@
-﻿namespace tabuleiro
+﻿using xadrez;
+
+namespace tabuleiro
 {
     class Tabuleiro
     {
@@ -43,6 +45,8 @@
 
 
         }
+
+  
         public bool ExistePeca(Posicao posicao)
         {
             ValidarPosicao(posicao);
@@ -59,6 +63,19 @@
                 throw new TabuleiroException("Posição inválida.");
             }
 
+        }
+
+        public Peca RetirarPeca(Posicao posicao)
+        {
+
+            var peca = Peca(posicao);
+
+            if (peca == null) return null;
+
+            Pecas[peca.Posicao.Linha, peca.Posicao.Coluna] = null;
+            peca.Posicao = null;
+
+            return peca;
         }
 
     }
