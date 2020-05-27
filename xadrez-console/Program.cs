@@ -10,6 +10,8 @@ namespace xadrez_console
             Console.WriteLine("Hello World!");
 
             Posicao p = new Posicao(3, 4);
+
+            var tab = new Tabuleiro.Tabuleiro(8, 8);
             
         }
     }
