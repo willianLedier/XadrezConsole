@@ -28,6 +28,37 @@ namespace xadrez_console
 
         }
 
+        public static void ImprimirTabuleiro(tabuleiro.Tabuleiro tabuleiro, bool[,] possicoesPossiveis)
+        {
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoPossicoesPossiveis = ConsoleColor.DarkGray;
+
+
+            for (int i = 0; i < tabuleiro.Linhas; i++)
+            {
+
+                System.Console.Write(8 - i + " ");
+
+                for (int y = 0; y < tabuleiro.Colunas; y++)
+                {
+
+                    if (possicoesPossiveis[i, y]) Console.BackgroundColor = fundoPossicoesPossiveis;
+
+                    ImprimirPeca(tabuleiro.GetPeca(i, y));
+
+                    Console.BackgroundColor = fundoOriginal;
+                }
+
+                System.Console.WriteLine();
+
+            }
+            
+            Console.BackgroundColor = fundoOriginal;
+            System.Console.WriteLine("   a b c d e f g h");
+
+        }
+
+
         public static void ImprimirPeca(Peca peca)
         {
 

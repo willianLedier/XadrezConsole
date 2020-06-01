@@ -1,6 +1,6 @@
 ﻿namespace tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
 
         public Posicao Posicao { get; set; }
@@ -22,6 +22,14 @@
         public override string ToString()
         {
             return " -"; 
+        }
+
+        public abstract bool[,] MovimentosPosiveis();
+
+        public bool PodeMover(Posicao posicao)
+        {
+            Peca peca = Tabuleiro.Peca(posicao);
+            return peca == null || peca.Cor != this.Cor;
         }
 
     }

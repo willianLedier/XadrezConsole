@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace tabuleiro
+﻿namespace tabuleiro
 {
     public class Posicao
     {
@@ -15,6 +11,12 @@ namespace tabuleiro
             Linha = linha;
             Coluna = coluna;
 
+        }
+
+        public void DefinirPosicao(int linha, int coluna)
+        {
+            Linha = linha;
+            Coluna = coluna;
         }
 
         public override string ToString()

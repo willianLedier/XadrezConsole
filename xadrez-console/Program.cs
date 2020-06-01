@@ -6,6 +6,7 @@ namespace xadrez_console
 {
     class Program
     {
+
         static void Main(string[] args)
         {
 
@@ -24,6 +25,12 @@ namespace xadrez_console
                     Console.Write("Origem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
 
+                    bool[,] movimentosPossiveis = partida.Tabuleiro.Peca(origem).MovimentosPosiveis();
+
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.Tabuleiro, movimentosPossiveis);
+
+                    Console.WriteLine();
                     Console.Write("Destino: ");
                     Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
 
@@ -31,15 +38,13 @@ namespace xadrez_console
 
                 }
 
-
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            Console.ReadKey();
 
+            Console.ReadKey();
 
         }
     }

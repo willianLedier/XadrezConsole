@@ -23,6 +23,7 @@ namespace xadrez
         public void ExecutaMovimento(Posicao origem, Posicao destino)
         {
 
+
             var pecaCapturada = Tabuleiro.RetirarPeca(destino);
             var peca = Tabuleiro.RetirarPeca(origem);
 
@@ -35,10 +36,25 @@ namespace xadrez
         {
 
             var rei = new Rei(Tabuleiro, Cor.Branca);
-            var reib = new Rei(Tabuleiro, Cor.Amarela);
+            var torrea = new Torre(Tabuleiro, Cor.Amarela);
+            var torre = new Torre(Tabuleiro, Cor.Branca);
+            var torre1 = new Torre(Tabuleiro, Cor.Branca);
+            var torre2 = new Torre(Tabuleiro, Cor.Branca);
+            var torre3 = new Torre(Tabuleiro, Cor.Branca);
+
+
 
             Tabuleiro.ColocarPeca(rei, new PosicaoXadrez('c', 1).ToPosicao());
-            Tabuleiro.ColocarPeca(reib, new PosicaoXadrez('a', 4).ToPosicao());
+            Tabuleiro.ColocarPeca(torre, new PosicaoXadrez('a', 4).ToPosicao());
+            Tabuleiro.ColocarPeca(torre1, new PosicaoXadrez('a', 5).ToPosicao());
+            Tabuleiro.ColocarPeca(torre2, new PosicaoXadrez('a', 6).ToPosicao());
+            Tabuleiro.ColocarPeca(torre3, new PosicaoXadrez('a', 7).ToPosicao());
+
+            Tabuleiro.ColocarPeca(torrea, new PosicaoXadrez('e', 7).ToPosicao());
+
+
+
+
 
         }
 
