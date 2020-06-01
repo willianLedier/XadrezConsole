@@ -42,10 +42,7 @@ namespace tabuleiro
             peca.Posicao = posicao;
             Pecas[peca.Posicao.Linha, peca.Posicao.Coluna] = peca;
 
-
-
         }
-
   
         public bool ExistePeca(Posicao posicao)
         {

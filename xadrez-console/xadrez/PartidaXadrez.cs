@@ -6,8 +6,8 @@ namespace xadrez
     {
 
         public Tabuleiro Tabuleiro { get; private set; }
-        private int Turno { get; set; }
-        private Cor JogadorAtual { get; set; }
+        public int Turno { get; private set; }
+        public Cor JogadorAtual { get; private set; }
         public bool Terminada { get; set; }
 
         public PartidaXadrez()
@@ -23,7 +23,6 @@ namespace xadrez
         public void ExecutaMovimento(Posicao origem, Posicao destino)
         {
 
-
             var pecaCapturada = Tabuleiro.RetirarPeca(destino);
             var peca = Tabuleiro.RetirarPeca(origem);
 
@@ -32,11 +31,30 @@ namespace xadrez
 
         }
 
+        public void RealizaJogada(Posicao origem, Posicao destino)
+        {
+            ExecutaMovimento(origem, destino);
+            Turno++;
+            MudarJogador();
+        }
+
+        public void MudarJogador()
+        {
+            if (JogadorAtual == Cor.Branca)
+            {
+                JogadorAtual = Cor.Preta;
+            }
+            else
+            {
+                JogadorAtual = Cor.Branca;
+            }
+        }
+
         private void ColocarPecas()
         {
 
             var rei = new Rei(Tabuleiro, Cor.Branca);
-            var torrea = new Torre(Tabuleiro, Cor.Amarela);
+            var torrea = new Torre(Tabuleiro, Cor.Preta);
             var torre = new Torre(Tabuleiro, Cor.Branca);
             var torre1 = new Torre(Tabuleiro, Cor.Branca);
             var torre2 = new Torre(Tabuleiro, Cor.Branca);
@@ -52,10 +70,34 @@ namespace xadrez
 
             Tabuleiro.ColocarPeca(torrea, new PosicaoXadrez('e', 7).ToPosicao());
 
+        }
 
+        public void ValidarPosicaoOrigem(Posicao posicao)
+        {
 
+            if (Tabuleiro.Peca(posicao) == null)
+            {
+                throw new TabuleiroException("Não existe peça nesta posição.");
+            }
 
+            if (JogadorAtual != Tabuleiro.Peca(posicao).Cor)
+            {
+                throw new TabuleiroException("Peça escolhida inválida para a rodada.");
+            }
 
+            if (!Tabuleiro.Peca(posicao).ExisteMovimentoPossivel())
+            {
+                throw new TabuleiroException("Não há movimentos possíveis para a peça escolhida.");
+            }
+
+        }
+
+        public void ValidarPosicaoDestino(Posicao origem, Posicao destino)
+        {
+            if (!Tabuleiro.Peca(origem).PodeMoverPara(destino))
+            {
+                throw new TabuleiroException("Posição de destino inválida.");
+            }
         }
 
     }
