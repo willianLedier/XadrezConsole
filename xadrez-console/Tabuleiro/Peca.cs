@@ -52,7 +52,7 @@
             return peca == null || peca.Cor != this.Cor;
         }
 
-        public bool PodeMoverPara(Posicao destino)
+        public bool MovimentoPossivel(Posicao destino)
         {
             return MovimentosPosiveis()[destino.Linha, destino.Coluna];
         }
