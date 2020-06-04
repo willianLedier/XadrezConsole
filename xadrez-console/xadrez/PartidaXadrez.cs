@@ -142,6 +142,23 @@ namespace xadrez
                 throw new TabuleiroException("Não pode se colocar em check, movimento inválido.");
             }
 
+            var pecaMovida = Tabuleiro.Peca(destino);
+
+            if (pecaMovida is Peao)
+            {
+                if ((pecaMovida.Cor == Cor.Branca && destino.Linha == 7) || (pecaMovida.Cor == Cor.Preta && destino.Linha == 0))
+                {
+                    pecaMovida = Tabuleiro.RetirarPeca(destino);
+                    Pecas.Remove(pecaMovida);
+
+                    var rainha = new Rainha(Tabuleiro, pecaMovida.Cor);
+                    Tabuleiro.ColocarPeca(rainha, destino);
+
+                    Pecas.Add(rainha);
+
+                }
+            }
+
             if (EstaEmXeque(Adversaria(JogadorAtual)))
             {
                 Xeque = true;
@@ -161,7 +178,6 @@ namespace xadrez
             //Jogada Especial En Passant
             VulneravelEnPassant = null;
 
-            var pecaMovida = Tabuleiro.Peca(destino);
 
             if (pecaMovida is Peao && (destino.Linha == origem.Linha - 2 || destino.Linha == origem.Linha + 2))
             {
