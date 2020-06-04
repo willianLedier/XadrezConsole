@@ -16,6 +16,8 @@ namespace xadrez_console
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
             }
 
             Console.ReadKey();
@@ -56,6 +58,8 @@ namespace xadrez_console
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
+
                     Console.ReadKey();
                 }
 

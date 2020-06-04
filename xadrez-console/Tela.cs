@@ -55,9 +55,17 @@ namespace xadrez_console
 
             Console.Write("[");
 
+            ConsoleColor aux = Console.ForegroundColor;
+
             foreach (var peca in conjunto)
             {
+
+                if (peca.Cor == Cor.Preta)
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
                 Console.Write(peca + " ");
+                Console.ForegroundColor = aux;
+
             }
 
             Console.Write("]");
